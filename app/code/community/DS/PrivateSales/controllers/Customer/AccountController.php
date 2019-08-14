@@ -29,7 +29,7 @@ class DS_PrivateSales_Customer_AccountController extends Mage_Customer_AccountCo
     {
         if (!Mage::helper('privatesales')->canShowRegistration())
         {
-            $this->_getSession()->addError($this->__('Account registration has been locked.'));
+            $this->_getSession()->addError(Mage::helper('privatesales')->getRegistrationErrorMessage());
             $this->_redirect('*/*');
             return;
         }
@@ -46,7 +46,7 @@ class DS_PrivateSales_Customer_AccountController extends Mage_Customer_AccountCo
     {
         if (!Mage::helper('privatesales')->canShowRegistration())
         {
-            $this->_getSession()->addError($this->__('Account registration has been locked.'));
+            $this->_getSession()->addError(Mage::helper('privatesales')->getRegistrationErrorMessage());
             $this->_redirect('*/*');
             return;
         }
@@ -63,7 +63,7 @@ class DS_PrivateSales_Customer_AccountController extends Mage_Customer_AccountCo
     {
         if (!Mage::helper('privatesales')->canShowForgotPassword())
         {
-            $this->_getSession()->addError($this->__('Forgot password has been locked.'));
+            $this->_getSession()->addError(Mage::helper('privatesales')->getForgotPasswordErrorMessage());
             $this->_redirect('*/*');
             return;
         }
@@ -80,7 +80,7 @@ class DS_PrivateSales_Customer_AccountController extends Mage_Customer_AccountCo
     {
         if (!Mage::helper('privatesales')->canShowForgotPassword())
         {
-            $this->_getSession()->addError($this->__('Forgot password has been locked.'));
+            $this->_getSession()->addError(Mage::helper('privatesales')->getForgotPasswordErrorMessage());
             $this->_redirect('*/*');
             return;
         }

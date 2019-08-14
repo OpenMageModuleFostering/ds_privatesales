@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>DS_PrivateSales</name>
-    <version>1.0.2.1</version>
+    <version>1.0.3</version>
     <stability>stable</stability>
     <license uri="http://opensource.org/licenses/osl-3.0.php">OSL</license>
     <channel>community</channel>
@@ -18,6 +18,7 @@
 	CMS page views can be blocked separately&#xD;
 &lt;/li&gt;&#xD;
 &lt;li&gt;Catalog navigation can be hided&lt;/li&gt;&#xD;
+&lt;li&gt;Configurable custom error messages when trying to access locked registration / forgot password&lt;/li&gt;&#xD;
 &lt;li&gt;Fixes redirect to startpage not working when &lt;i&gt;customer_startup_redirect_dashboard&lt;/i&gt; option is disabled&#xD;
 &lt;li /&gt;Admin ACL for configuration&lt;/li&gt;&#xD;
 &lt;/ul&gt;&#xD;
@@ -25,7 +26,11 @@
 &lt;p&gt;Included translations: de_DE&lt;/p&gt;&#xD;
 &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; To avoid 404 errors in admin please re-login after first installation.&lt;/p&gt;&#xD;
 &lt;p&gt;For more information please visit our &lt;a href="http://www.design-slider.de/magento-onlineshop/magento-extensions/private-sales/"&gt;official extension page&lt;/a&gt; (currently in german only).&lt;/p&gt;</description>
-    <notes>1.0.2.1&#xD;
+    <notes>1.0.3&#xD;
+  added options to overwrite error messages when trying to access locked registration / forgot password&#xD;
+  added compatibility for CE 1.8 / 1.8.1&#xD;
+&#xD;
+1.0.2.1&#xD;
   fixed a php notice when trying to check the capability of retrieving the magento edition&#xD;
 &#xD;
 1.0.2&#xD;
@@ -45,9 +50,9 @@
 1.0.0&#xD;
   initial release</notes>
     <authors><author><name>Design:Slider GbR</name><user>DesignSliderGbR</user><email>magento@design-slider.de</email></author></authors>
-    <date>2013-08-23</date>
-    <time>01:58:45</time>
-    <contents><target name="magelocale"><dir><dir name="de_DE"><file name="DS_PrivateSales.csv" hash="d832fcce7c682e8c4ef560a265d301d3"/></dir></dir></target><target name="magecommunity"><dir name="DS"><dir name="PrivateSales"><dir name="Block"><dir name="Checkout"><dir name="Onepage"><file name="Login.php" hash="6e558ac11e8b40a834465a1c3e7165c2"/></dir></dir><dir name="Customer"><dir name="Form"><file name="Login.php" hash="fba89a2109a63a758e484dfe3b4e2f38"/></dir></dir><file name="Navigation.php" hash="585f907774ac18e7fbefa60f9fb2d746"/><file name="Topmenu.php" hash="41c13dedf4527c26b4f72eeef4a503cf"/></dir><file name="CHANGE.LOG" hash="33d95e5efae64c9d634e6c7c5a228211"/><dir name="Helper"><file name="Data.php" hash="8d54560848017dd1c2ea1216c0fbb09c"/></dir><dir name="Model"><file name="Observer.php" hash="f127b2735a3cc2b681c09e9726944c34"/></dir><dir name="controllers"><dir name="Customer"><file name="AccountController.php" hash="cda005c0dc83d8df98ee12fd047c2c64"/></dir></dir><dir name="etc"><file name="config.xml" hash="89b26fea8a66ae8906eaacd44ddd9be1"/><file name="system.xml" hash="b13d446f7557083159ef318014bef19d"/></dir><dir name="sql"><dir name="ds_privatesales_setup"><file name="upgrade-1.0.1-1.0.2.php" hash="533b2fc7238456b967efe5a4cb1d57fc"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="DS_PrivateSales.xml" hash="1b870d4aec398bf9a9d6424cc58656e9"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="default"><dir name="default"><dir name="template"><dir name="ds"><dir name="privatesales"><file name="login_ce14_15_16.phtml" hash="f89afa1794bf7aef7fc41bed2bdf3c2b"/><file name="login_ce17.phtml" hash="958bcb15da673e1188e635b9f6184e6e"/><file name="opc_ce14_15_16.phtml" hash="a3050dd164da2b002b2aa6fdf4a5174a"/><file name="opc_ce17.phtml" hash="b9642a7b12298201a52546fd15076d46"/></dir></dir></dir></dir></dir></dir></target></contents>
+    <date>2014-02-23</date>
+    <time>15:07:02</time>
+    <contents><target name="magelocale"><dir><dir name="de_DE"><file name="DS_PrivateSales.csv" hash="fcbd4787ff1421feed0f301b93285e88"/></dir></dir></target><target name="magecommunity"><dir name="DS"><dir name="PrivateSales"><dir name="Block"><dir name="Checkout"><dir name="Onepage"><file name="Login.php" hash="c77f6b5327fff3f7eabd1c3b25798b6e"/></dir></dir><dir name="Customer"><dir name="Form"><file name="Login.php" hash="95d7e63c31e6aa19e40741e783ef37e1"/></dir></dir><file name="Navigation.php" hash="585f907774ac18e7fbefa60f9fb2d746"/><file name="Topmenu.php" hash="41c13dedf4527c26b4f72eeef4a503cf"/></dir><file name="CHANGE.LOG" hash="5c386d8e5aafc95c1b4c29a8bd55a023"/><dir name="Helper"><file name="Data.php" hash="cbac28c3f13df528c2d72dafee30a331"/></dir><dir name="Model"><file name="Observer.php" hash="f127b2735a3cc2b681c09e9726944c34"/></dir><dir name="controllers"><dir name="Customer"><file name="AccountController.php" hash="2743d62fccd1403eae4bffa229272db8"/></dir></dir><dir name="etc"><file name="config.xml" hash="b20c3e34e2bbbfadf2f96dfb32a2a4cc"/><file name="system.xml" hash="d2fb336529cf2e3245e967b8fc273981"/></dir><dir name="sql"><dir name="ds_privatesales_setup"><file name="upgrade-1.0.1-1.0.2.php" hash="533b2fc7238456b967efe5a4cb1d57fc"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="DS_PrivateSales.xml" hash="1b870d4aec398bf9a9d6424cc58656e9"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="default"><dir name="default"><dir name="template"><dir name="ds"><dir name="privatesales"><file name="login_ce14_15_16.phtml" hash="f89afa1794bf7aef7fc41bed2bdf3c2b"/><file name="login_ce17_18.phtml" hash="2cd3290ac19117dcae7ad0454c6f7ddd"/><file name="opc_ce14_15_16.phtml" hash="a3050dd164da2b002b2aa6fdf4a5174a"/><file name="opc_ce17_18.phtml" hash="abe6960b443776a8119d3e5a4eb849c2"/></dir></dir></dir></dir></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.0.0</min><max>6.0.0</max></php><package><name>Mage_Customer</name><channel>core</channel><min>1.4.0.0.13</min><max></max></package><package><name>Mage_Checkout</name><channel>core</channel><min>0.9.5</min><max></max></package></required></dependencies>
 </package>

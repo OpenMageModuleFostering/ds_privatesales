@@ -1,5 +1,9 @@
 DS_PrivateSales
 
+1.0.3
+  added options to overwrite error messages when trying to access locked registration / forgot password
+  added compatibility for CE 1.8 / 1.8.1
+
 1.0.2.1
   fixed a php notice when trying to check the capability of retrieving the magento edition
 

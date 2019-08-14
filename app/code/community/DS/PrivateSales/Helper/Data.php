@@ -211,4 +211,56 @@ class DS_PrivateSales_Helper_Data extends Mage_Core_Helper_Abstract
         
         return '';
     }
+
+    /**
+     * Get custom registration disabled error message
+     * 
+     * @return string
+     */
+    public function getRegistrationCustomErrorMessage()
+    {
+        return Mage::getStoreConfig('privatesales/registration/disable_error_msg');
+    }
+
+    /**
+     * Get registration disabled error message
+     * 
+     * @return string
+     */
+    public function getRegistrationErrorMessage()
+    {
+        $msg = $this->getRegistrationCustomErrorMessage();
+        if (!strlen(trim($msg)))
+        {
+            $msg = $this->__('Account registration has been locked.');
+        }
+        
+        return $msg;
+    }
+
+    /**
+     * Get custom forgot password disabled error message
+     * 
+     * @return string
+     */
+    public function getForgotPasswordCustomErrorMessage()
+    {
+        return Mage::getStoreConfig('privatesales/forgot_password/disable_error_msg');
+    }
+
+    /**
+     * Get forgot password disabled error message
+     * 
+     * @return string
+     */
+    public function getForgotPasswordErrorMessage()
+    {
+        $msg = $this->getForgotPasswordCustomErrorMessage();
+        if (!strlen(trim($msg)))
+        {
+            $msg = $this->__('Forgot password has been locked.');
+        }
+        
+        return $msg;
+    }
 }

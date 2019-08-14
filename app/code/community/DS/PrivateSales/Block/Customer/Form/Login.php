@@ -20,7 +20,7 @@ class DS_PrivateSales_Block_Customer_Form_Login extends Mage_Customer_Block_Form
     protected function _beforeToHtml()
     {
         // Set latest available template as default
-        $this->setTemplate('ds/privatesales/login_ce17.phtml');
+        $this->setTemplate('ds/privatesales/login_ce17_18.phtml');
         
         // Use older template depending on magento version (is there a layout xml based solution for that?)
         $e = method_exists('Mage', 'getEdition') ? Mage::getEdition() : 'Community';
