@@ -12,6 +12,49 @@ class DS_PrivateSales_Helper_Data extends Mage_Core_Helper_Abstract
 {
 
     /**
+     * AdminHTML XML Paths (for CE < 1.6)
+     *
+     * @var string
+     */
+    private $xmlPathUseCustomAdminPath       = 'default/admin/url/use_custom_path';
+    private $xmlPathCustomAdminPath          = 'default/admin/url/custom_path';
+    private $xmlPathAdminhtmlRouterFrontname = 'admin/routers/adminhtml/args/frontName';
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        if (defined('Mage_Adminhtml_Helper_Data::XML_PATH_USE_CUSTOM_ADMIN_PATH'))
+        {
+            $this->xmlPathUseCustomAdminPath = Mage_Adminhtml_Helper_Data::XML_PATH_USE_CUSTOM_ADMIN_PATH;
+        }
+
+        if (defined('Mage_Adminhtml_Helper_Data::XML_PATH_CUSTOM_ADMIN_PATH'))
+        {
+            $this->xmlPathCustomAdminPath = Mage_Adminhtml_Helper_Data::XML_PATH_CUSTOM_ADMIN_PATH;
+        }
+
+        if (defined('Mage_Adminhtml_Helper_Data::XML_PATH_ADMINHTML_ROUTER_FRONTNAME'))
+        {
+            $this->xmlPathAdminhtmlRouterFrontname = Mage_Adminhtml_Helper_Data::XML_PATH_ADMINHTML_ROUTER_FRONTNAME;
+        }
+    }
+
+    /**
+     * Get configured admin path
+     *
+     * @return string
+     */
+    public function getAdminPath()
+    {
+        $res = ((bool)(string)Mage::getConfig()->getNode($this->xmlPathUseCustomAdminPath))
+            ? (string)Mage::getConfig()->getNode($this->xmlPathCustomAdminPath)
+            : (string)Mage::getConfig()->getNode($this->xmlPathAdminhtmlRouterFrontname);
+
+        return strlen($res) ? $res : 'admin';
+    }
+
+    /**
      * Check if private sales is enabled
      * 
      * @return boolean

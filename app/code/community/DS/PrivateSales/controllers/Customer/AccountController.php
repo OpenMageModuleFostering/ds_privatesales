@@ -92,21 +92,22 @@ class DS_PrivateSales_Customer_AccountController extends Mage_Customer_AccountCo
      * Define target URL and redirect customer after logging in
      * 
      * @see Mage_Customer_AccountController::_loginPostRedirect
+     * @since 2014/11/05 use default redirect if login was not successful to avoid error message display is being suppressed by multiple redirects
      */
     protected function _loginPostRedirect()
     {
+        $session = $this->_getSession();
+
         # retrieve xml path constant (ce >= 1.6)
         if (defined('Mage_Customer_Helper_Data::XML_PATH_CUSTOMER_STARTUP_REDIRECT_TO_DASHBOARD'))
         {
             $this->xmlPathCustomerStartupRedirectToDashboard = Mage_Customer_Helper_Data::XML_PATH_CUSTOMER_STARTUP_REDIRECT_TO_DASHBOARD;
         }
 
-        # use default behaviour if privatesales disabled or customer_startup_redirect_dashboard is configured
-        if (!Mage::helper('privatesales')->isEnabled() || Mage::getStoreConfigFlag($this->xmlPathCustomerStartupRedirectToDashboard)) {
+        # use default behaviour if privatesales disabled OR login failed OR customer_startup_redirect_dashboard is configured
+        if (!Mage::helper('privatesales')->isEnabled() || !$session->isLoggedIn() || Mage::getStoreConfigFlag($this->xmlPathCustomerStartupRedirectToDashboard)) {
             return parent::_loginPostRedirect();
         }
-        
-        $session = $this->_getSession();
 
         if (!$session->getBeforeAuthUrl()) { #no baseurl comparison here, default logic after here
 

@@ -55,12 +55,13 @@ class DS_PrivateSales_Model_Observer
     {
         return !(
             (Mage::getSingleton('admin/session')->isLoggedIn()) ||
-            (self::$m=='admin') ||
+            (self::$m==Mage::helper('privatesales')->getAdminPath()) ||
             (self::$m=='api') ||
-            (self::$m=='customer' && self::$c=='account')
+            (self::$m=='customer' && self::$c=='account') ||
+            $this->_isWhitelistedPage()
         );
     }
-    
+
     /**
      * Check if current request points to blockable catalog page
      * 
@@ -68,7 +69,7 @@ class DS_PrivateSales_Model_Observer
      */
     private function _isCatalogPage()
     {
-        return (self::$m=='catalog' || self::$m=='catalogsearch' || self::$m=='checkout');
+        return (!$this->_isWhitelistedPage() && (self::$m=='catalog' || self::$m=='catalogsearch' || self::$m=='checkout' || self::$m=='tag'));
     }
     
     /**
@@ -78,9 +79,24 @@ class DS_PrivateSales_Model_Observer
      */
     private function _isCmsPage()
     {
-        return (self::$m=='cms' && self::$c=='page' && self::$a=='view');
+        return (!$this->_isWhitelistedPage() && self::$m=='cms' && self::$c=='page' && self::$a=='view');
     }
-    
+
+    /**
+     * Check if current page is whitelisted
+     *
+     * @return boolean
+     */
+    private function _isWhitelistedPage() {
+        return in_array(
+            Mage::getSingleton('cms/page')->getIdentifier(),
+            array(
+                Mage::getStoreConfig(Mage_Cms_Helper_Page::XML_PATH_NO_ROUTE_PAGE),
+                Mage::getStoreConfig(Mage_Cms_Helper_Page::XML_PATH_NO_COOKIES_PAGE)
+            )
+        );
+    }
+
     /**
      * Redirect user to login page
      */
@@ -93,7 +109,7 @@ class DS_PrivateSales_Model_Observer
             );
 
             Mage::app()->getResponse()->setRedirect(
-                Mage::getUrl('customer/account/login')
+                Mage::helper('customer')->getLoginUrl()
             );
             
             self::$_virgin = false;

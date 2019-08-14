@@ -16,21 +16,30 @@ class DS_PrivateSales_Block_Customer_Form_Login extends Mage_Customer_Block_Form
      *
      * @return Mage_Core_Block_Abstract
      * @see Mage_Core_Block_Template::_beforeToHtml
+     * @since 2014/11/02 added CE 1.9 support
+     * @since 2014/11/02 added proper directory separators to support windows based systems
+     * @since 2014/11/02 fixed that enterprise versions have been compared like there were community versions (still no really EE support yet)
      */
     protected function _beforeToHtml()
     {
+
         // Set latest available template as default
-        $this->setTemplate('ds/privatesales/login_ce17_18.phtml');
-        
+        $this->setTemplate('ds'.DIRECTORY_SEPARATOR.'privatesales'.DIRECTORY_SEPARATOR.'login_ce19.phtml');
+
         // Use older template depending on magento version (is there a layout xml based solution for that?)
         $e = method_exists('Mage', 'getEdition') ? Mage::getEdition() : 'Community';
         $v = Mage::getVersion();
-        if ($e = 'Community' && version_compare($v, '1.7') < 0) {
-            
-            // Use CE 1.4 - 1.6.2 compatible template
-            $this->setTemplate('ds/privatesales/login_ce14_15_16.phtml');
+
+        // Use CE 1.4 - 1.6.2 compatible template
+        if ($e == 'Community' && version_compare($v, '1.7') < 0) {
+            $this->setTemplate('ds'.DIRECTORY_SEPARATOR.'privatesales'.DIRECTORY_SEPARATOR.'login_ce14_15_16.phtml');
         }
-        
+
+        // Use CE 1.7 - 1.8 compatible template
+        elseif ($e == 'Community' && version_compare($v, '1.9') < 0) {
+            $this->setTemplate('ds'.DIRECTORY_SEPARATOR.'privatesales'.DIRECTORY_SEPARATOR.'login_ce17_18.phtml');
+        }
+
         return $this;
     }
 }
