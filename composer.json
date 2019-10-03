@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/DS_PrivateSales",
+    "name": "OpenMageModuleFostering\/DS_PrivateSales",
     "type": "magento-module",
     "license": "OSL",
     "homepage": "",
     "description": "Adds the possibility to hide & lock certain parts of your stores for guests.",
     "authors": [
-    {
-        "name": "Design:Slider GbR",
-        "email": "magento@design-slider.de"
-    }
-],
+        {
+            "name": "Design:Slider GbR",
+            "email": "magento@design-slider.de"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
