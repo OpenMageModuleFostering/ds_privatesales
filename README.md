@@ -1,3 +1,5 @@
+
+
 ## Original Package Description
 
 Adds the possibility to hide & lock certain parts of your stores for guests.
